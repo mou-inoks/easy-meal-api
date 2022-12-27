@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using easy_meal_api.Data;
 using easy_meal_api.Models;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace easy_meal_api.Controllers
 {
     [Route("api/[controller]")]
+    [ApiController]
     public class AlimentsController : ControllerBase
     {
         private readonly ApiContext _context;
@@ -25,14 +27,14 @@ namespace easy_meal_api.Controllers
         {
             if (aliment.Id != 0)
             {
-                var alimentInDb = _context.Aliments.Find(aliment.Id);
+                var alimentInDb = _context.Aliment.Find(aliment.Id);
 
                 if (alimentInDb == null)
                     return new JsonResult(NotFound());
                 alimentInDb = aliment;
             }
             else
-                _context.Aliments.Add(aliment);
+                _context.Aliment.Add(aliment);
 
             _context.SaveChanges();
 
@@ -40,14 +42,9 @@ namespace easy_meal_api.Controllers
         }
 
         [HttpGet]
-        public JsonResult Get(int id)
+        public async Task<ActionResult<IEnumerable<AlimentDao>>> GetAliments()
         {
-            var result = _context.Aliments.ToList();
-
-            if (result == null)
-                return new JsonResult(NotFound());
-
-            return new JsonResult(Ok(result));
+            return await _context.Aliment.ToListAsync();
         }
     }
 }

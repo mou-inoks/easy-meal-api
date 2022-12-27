@@ -10,14 +10,7 @@ namespace easy_meal_api.Data
 		{
 
 		}
-		public DbSet<AlimentDao> Aliments { get; set; }
-
-		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-		{
-			optionsBuilder.UseSqlServer("Server=(localhost);Database=mysql;Integrated Security: True;");
-			base.OnConfiguring(optionsBuilder);
-		}
-
+		public DbSet<AlimentDao> Aliment { get; set; }
     }
 }
 
