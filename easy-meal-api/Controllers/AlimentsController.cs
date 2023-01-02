@@ -27,6 +27,30 @@ namespace easy_meal_api.Controllers
         {
             return await _context.Aliment.ToListAsync();
         }
+        [HttpGet("id")]
+        public async Task<ActionResult<AlimentDao>> GetAliments(int id)
+        {
+            var aliment = await _context.Aliment.FindAsync(id);
+
+            if (aliment == null)
+                return null;
+            else
+                return aliment;
+        }
+        [HttpPost]
+        public async Task<ActionResult<AlimentDao>> CreateAliment(AlimentDao aliment)
+        {
+            var alim = new AlimentDao()
+            {
+                Name = aliment.Name,
+                TypeId = aliment.TypeId,
+            };
+
+            await _context.AddAsync(alim);
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
     }
 }
 
