@@ -11,6 +11,8 @@ namespace easy_meal_api.Data
 
 		}
 		public DbSet<AlimentDao> Aliment { get; set; }
-    }
+		public DbSet<TypeDao> Type { get; set; }
+		public DbSet<RepasDao> Repas { get; set; }
+	}
 }
 

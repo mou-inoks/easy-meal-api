@@ -21,25 +21,6 @@ namespace easy_meal_api.Controllers
         {
             _context = iContext;
         }
-        // POST api/values
-        [HttpPost]
-        public JsonResult Post(AlimentDao aliment)
-        {
-            if (aliment.Id != 0)
-            {
-                var alimentInDb = _context.Aliment.Find(aliment.Id);
-
-                if (alimentInDb == null)
-                    return new JsonResult(NotFound());
-                alimentInDb = aliment;
-            }
-            else
-                _context.Aliment.Add(aliment);
-
-            _context.SaveChanges();
-
-            return new JsonResult(Ok(aliment));
-        }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AlimentDao>>> GetAliments()
