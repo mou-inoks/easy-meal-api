@@ -40,6 +40,7 @@ namespace easy_meal_api.Controllers
         [HttpPost]
         public async Task<ActionResult<AlimentDao>> CreateAliment(AlimentDao aliment)
         {
+
             var alim = new AlimentDao()
             {
                 Name = aliment.Name,
