@@ -72,6 +72,49 @@ namespace easy_meal_api.Controllers
 
             return Ok();
         }
+
+        [HttpGet("Type")]
+        public async Task<ActionResult<IEnumerable<TypeDao>>> GetType()
+        {
+            return await _context.Type.ToListAsync();
+        }
+
+
+        [HttpPost("Type")]
+        public async Task<ActionResult<TypeDao>> CreateType(TypeDao type)
+        {
+            if (type.Type == null || type.Type == "")
+                throw new Exception();
+            else
+            {
+                var t = new TypeDao()
+                {
+                    Type = type.Type,
+                };
+
+                await _context.AddAsync(t);
+                await _context.SaveChangesAsync();
+            }
+
+            return Ok();
+        }
+
+        [HttpDelete("Type/{id}")]
+        public async Task<IActionResult> DeleteType(int id)
+        {
+            var type = await _context.Type.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (type == null)
+                return NotFound();
+            else
+            {
+                _context.Type.Remove(type);
+                await _context.SaveChangesAsync();
+
+            }
+
+            return Ok();
+        }
     }
 }
 
