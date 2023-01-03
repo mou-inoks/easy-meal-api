@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using easy_meal_api.Data;
+﻿using easy_meal_api.Data;
 using easy_meal_api.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -27,7 +23,7 @@ namespace easy_meal_api.Controllers
         {
             return await _context.Aliment.ToListAsync();
         }
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<AlimentDao>> GetAliments(int id)
         {
             var aliment = await _context.Aliment.FindAsync(id);
@@ -40,29 +36,39 @@ namespace easy_meal_api.Controllers
         [HttpPost]
         public async Task<ActionResult<AlimentDao>> CreateAliment(AlimentDao aliment)
         {
-
-            var alim = new AlimentDao()
+            if (aliment.Name == null || aliment.Name == "")
+                throw new Exception();
+            else if (aliment.TypeId == null || aliment.TypeId == "")
+                throw new Exception();
+            else
             {
-                Name = aliment.Name,
-                TypeId = aliment.TypeId,
-            };
+                var alim = new AlimentDao()
+                {
+                    Name = aliment.Name,
+                    TypeId = aliment.TypeId,
+                };
 
-            await _context.AddAsync(alim);
-            await _context.SaveChangesAsync();
+                await _context.AddAsync(alim);
+                await _context.SaveChangesAsync();
+            }
+
 
             return Ok();
         }
-        [HttpDelete("id")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAliment(int id)
         {
-            var alim = await _context.Aliment.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            var alim = await _context.Aliment.FirstOrDefaultAsync(x => x.Id == id);
 
             if (alim == null)
                 return NotFound();
             else
             {
                 _context.Aliment.Remove(alim);
+                await _context.SaveChangesAsync();
+
             }
+
 
             return Ok();
         }
