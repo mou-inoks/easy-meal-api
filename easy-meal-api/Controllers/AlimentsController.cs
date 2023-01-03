@@ -130,9 +130,10 @@ namespace easy_meal_api.Controllers
                 throw new Exception();
             else
             {
-                var t = new TypeDao()
+                var t = new RepasDao()
                 {
-                    Type = type.Type,
+                    Ingrédients = repas.Ingrédients,
+                    Name = repas.Name,
                 };
 
                 await _context.AddAsync(t);
