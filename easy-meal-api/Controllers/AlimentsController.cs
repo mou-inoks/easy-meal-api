@@ -52,6 +52,20 @@ namespace easy_meal_api.Controllers
 
             return Ok();
         }
+        [HttpDelete("id")]
+        public async Task<IActionResult> DeleteAliment(int id)
+        {
+            var alim = await _context.Aliment.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+
+            if (alim == null)
+                return NotFound();
+            else
+            {
+                _context.Aliment.Remove(alim);
+            }
+
+            return Ok();
+        }
     }
 }
 
