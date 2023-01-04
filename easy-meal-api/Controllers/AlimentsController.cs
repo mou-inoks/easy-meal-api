@@ -124,7 +124,7 @@ namespace easy_meal_api.Controllers
         }
 
         [HttpPost("Repas")]
-        public async Task<ActionResult<TypeDao>> CreateRepas(RepasDao repas)
+        public async Task<ActionResult<RepasDao>> CreateRepas(RepasDao repas)
         {
             if (repas.Name == null || repas.Name == "" || repas.Ingrédients == null || repas.Ingrédients == "")
                 throw new Exception();
@@ -138,6 +138,23 @@ namespace easy_meal_api.Controllers
 
                 await _context.AddAsync(t);
                 await _context.SaveChangesAsync();
+            }
+
+            return Ok();
+        }
+
+        [HttpDelete("Repas/{id}")]
+        public async Task<IActionResult> DeleteRepas(int id)
+        {
+            var repas = await _context.Repas.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (repas == null)
+                return NotFound();
+            else
+            {
+                _context.Repas.Remove(repas);
+                await _context.SaveChangesAsync();
+
             }
 
             return Ok();
