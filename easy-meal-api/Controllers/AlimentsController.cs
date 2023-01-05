@@ -2,6 +2,7 @@
 using easy_meal_api.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -36,10 +37,10 @@ namespace easy_meal_api.Controllers
         [HttpPost]
         public async Task<ActionResult<AlimentDao>> CreateAliment(AlimentDao aliment)
         {
-            if (aliment.Name == null || aliment.Name == "")
-                throw new Exception();
+            if (aliment.Name == null || aliment.Name == "" || aliment.Name.Length < 3)
+                throw new ValidationException();
             else if (aliment.TypeId == null || aliment.TypeId == "")
-                throw new Exception();
+                throw new ValidationException();
             else
             {
                 var alim = new AlimentDao()
@@ -84,7 +85,7 @@ namespace easy_meal_api.Controllers
         public async Task<ActionResult<TypeDao>> CreateType(TypeDao type)
         {
             if (type.Type == null || type.Type == "")
-                throw new Exception();
+                throw new ValidationException();
             else
             {
                 var t = new TypeDao()
@@ -126,8 +127,8 @@ namespace easy_meal_api.Controllers
         [HttpPost("Repas")]
         public async Task<ActionResult<RepasDao>> CreateRepas(RepasDao repas)
         {
-            if (repas.Name == null || repas.Name == "" || repas.Ingrédients == null || repas.Ingrédients == "")
-                throw new Exception();
+            if (repas.Name == null || repas.Name == "" || repas.Ingrédients == null || repas.Ingrédients == "" || repas.Ingrédients.Length < 3)
+                throw new ValidationException();
             else
             {
                 var t = new RepasDao()
