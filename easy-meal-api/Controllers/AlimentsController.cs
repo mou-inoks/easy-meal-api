@@ -160,6 +160,50 @@ namespace easy_meal_api.Controllers
 
             return Ok();
         }
+
+        [HttpGet("Users")]
+        public async Task<ActionResult<IEnumerable<UserDao>>> GetAllUsers()
+        {
+            return await _context.Users.ToListAsync();
+        }
+        [HttpPost("Users")]
+        public async Task<ActionResult<UserDao>> CreateUser(UserDao user)
+        {
+            if (user.UserName == null || user.UserName == "" || user.Password == null || user.Password == "" || user.Password.Length < 3)
+                throw new ValidationException();
+            else
+            {
+                var t = new UserDao()
+                {
+                    UserName = user.UserName,
+                    Password = user.Password,
+                };
+
+                await _context.AddAsync(t);
+                await _context.SaveChangesAsync();
+            }
+
+            return Ok();
+        }
+
+        [HttpDelete("Users/{id}")]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            var users = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (users == null)
+                return NotFound();
+            else
+            {
+                _context.Users.Remove(users);
+                await _context.SaveChangesAsync();
+
+            }
+
+            return Ok();
+        }
+
+
     }
 }
 

@@ -12,5 +12,6 @@ namespace easy_meal_api.Models
         public string Name { get; set; }
         [Required]
         public string Ingrédients { get; set; }
+
     }
 }
