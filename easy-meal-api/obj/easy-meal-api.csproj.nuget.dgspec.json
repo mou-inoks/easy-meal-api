@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\MOU\\Desktop\\easy-meal-api\\easy-meal-api\\easy-meal-api.csproj": {}
+    "/Users/tak1/Projects/easy-meal-api/easy-meal-api/easy-meal-api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\MOU\\Desktop\\easy-meal-api\\easy-meal-api\\easy-meal-api.csproj": {
+    "/Users/tak1/Projects/easy-meal-api/easy-meal-api/easy-meal-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MOU\\Desktop\\easy-meal-api\\easy-meal-api\\easy-meal-api.csproj",
+        "projectUniqueName": "/Users/tak1/Projects/easy-meal-api/easy-meal-api/easy-meal-api.csproj",
         "projectName": "easy-meal-api",
-        "projectPath": "C:\\Users\\MOU\\Desktop\\easy-meal-api\\easy-meal-api\\easy-meal-api.csproj",
-        "packagesPath": "C:\\Users\\MOU\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MOU\\Desktop\\easy-meal-api\\easy-meal-api\\obj\\",
+        "projectPath": "/Users/tak1/Projects/easy-meal-api/easy-meal-api/easy-meal-api.csproj",
+        "packagesPath": "/Users/tak1/.nuget/packages/",
+        "outputPath": "/Users/tak1/Projects/easy-meal-api/easy-meal-api/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\MOU\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/tak1/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -81,7 +75,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -93,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.101/RuntimeIdentifierGraph.json"
         }
       }
     }
